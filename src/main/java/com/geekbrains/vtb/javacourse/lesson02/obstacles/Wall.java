@@ -3,15 +3,15 @@ package com.geekbrains.vtb.javacourse.lesson02.obstacles;
 import com.geekbrains.vtb.javacourse.lesson02.participants.Participant;
 
 public class Wall implements Obstacle {
-    private final int heightInCentimeters;
+    private final int height;
 
-    public Wall(int heightInCentimeters) {
-        this.heightInCentimeters = heightInCentimeters;
+    public Wall(int height) {
+        this.height = height;
     }
 
     @Override
     public boolean challenge(Participant participant) {
 
-        return participant.jump(heightInCentimeters);
+        return participant.jump(height);
     }
 }
