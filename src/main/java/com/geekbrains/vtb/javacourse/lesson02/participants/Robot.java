@@ -1,37 +1,39 @@
 package com.geekbrains.vtb.javacourse.lesson02.participants;
 
 public class Robot implements Participant {
-    private int maxRunDistance;
-    private int maxJumpHeight;
+    private int runningLimitationInMeters;
+    private int jumpingLimitationInCentimeters;
     private String name;
 
-    public Robot(String name, int maxRunDistance, int maxJumpHeight) {
+    public Robot(String name, int runningLimitationInMeters, int jumpingLimitationInCentimeters) {
         this.name = name;
-        this.maxRunDistance = maxRunDistance;
-        this.maxJumpHeight = maxJumpHeight;
+        this.runningLimitationInMeters = runningLimitationInMeters;
+        this.jumpingLimitationInCentimeters = jumpingLimitationInCentimeters;
     }
 
     @Override
-    public boolean run(int distance) {
+    public boolean run(int meters) {
         boolean success;
-        if (distance > maxRunDistance) {
+        if (meters > runningLimitationInMeters) {
             System.out.println(name + " не справился с задачей.");
             success = false;
         } else {
-            System.out.println(name + " успешно пробежал(а) " + distance + " м.");
+            System.out.println(name + " успешно пробежал(а) " + meters + " м.");
             success = true;
         }
         return success;
     }
 
     @Override
-    public boolean jump(int height) {
-        if (height > maxJumpHeight) {
+    public boolean jump(int centimeters) {
+        boolean success;
+        if (centimeters > jumpingLimitationInCentimeters) {
             System.out.println(name + " не справился с задачей.");
-            return false;
+            success = false;
         } else {
-            System.out.println(name + " перепрыгнул препятствие: " + height + " см.");
-            return true;
+            System.out.println(name + " перепрыгнул препятствие: " + centimeters + " см.");
+            success = true;
         }
+        return success;
     }
 }

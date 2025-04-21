@@ -3,15 +3,15 @@ package com.geekbrains.vtb.javacourse.lesson02.obstacles;
 import com.geekbrains.vtb.javacourse.lesson02.participants.Participant;
 
 public class Treadmill implements Obstacle {
-    private final int length;
+    private final int lengthInMeters;
 
-    public Treadmill(int length) {
-        this.length = length;
+    public Treadmill(int lengthInMeters) {
+        this.lengthInMeters = lengthInMeters;
     }
 
     @Override
     public boolean challenge(Participant participant) {
 
-        return participant.run(length);
+        return participant.run(lengthInMeters);
     }
 }
