@@ -2,6 +2,7 @@ package com.geekbrains.vtb.javacourse.lesson03;
 
 import com.geekbrains.vtb.javacourse.lesson03.exceptions.MyArrayDataException;
 import com.geekbrains.vtb.javacourse.lesson03.exceptions.MyArraySizeException;
+import com.geekbrains.vtb.javacourse.lesson03.exceptions.MyException;
 
 public class Lesson3 {
 
@@ -33,50 +34,27 @@ public class Lesson3 {
 
         try {
             System.out.println("Сумма элементов массива: " + calculateSum(array));
-        } catch (MyArraySizeException | MyArrayDataException e) {
+        } catch (MyException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static int calculateSum(String[][] array) throws MyArraySizeException, MyArrayDataException {
-        validateArraySize(array);
-        return sumArrayValues(array);
-    }
-
-    public static void validateArraySize(String[][] array) throws MyArraySizeException {
-
-        if (array == null) {
-            throw new MyArraySizeException("Массив не может быть null");
+    public static int calculateSum(String[][] array) {
+        if (array.length != 4) {
+            throw new MyArraySizeException("Размер массива некорректный, количество строк не равно 4");
         }
-
-        int rows = array.length;
-        if ((rows != 4)) {
-            throw new MyArraySizeException("Размер массива некорректный, количество строк не 4");
-        }
-        
-        int column;
-        for (int i = 0; i < array.length; i++) {
-            column = array[i].length;
-            if ((column != 4)) {
+        int sum = 0;
+        for (int i = 0; i < 4; i++) {
+            if (array[i].length != 4) {
                 throw new MyArraySizeException("Размер массива некорректный, ошибка в строке " + i);
             }
-        }
-    }
-
-    public static int sumArrayValues(String[][] array) throws MyArrayDataException {
-
-        int sum = 0;
-
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                int cellValue;
+            for (int j = 0; j < 4; j++) {
                 try {
-                    cellValue = Integer.valueOf(array[i][j]);
-                } catch (Exception e) {
+                    sum += Integer.parseInt(array[i][j]);
+                } catch (NumberFormatException e) {
                     throw new MyArrayDataException("Преобразование не удалось. " +
                             "В ячейке [" + i + "][" + j + "] неверные данные");
                 }
-                sum += cellValue;
             }
         }
 
