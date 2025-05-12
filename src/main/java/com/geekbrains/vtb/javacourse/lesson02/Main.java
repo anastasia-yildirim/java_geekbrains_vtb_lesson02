@@ -8,8 +8,6 @@ import com.geekbrains.vtb.javacourse.lesson02.participants.Human;
 import com.geekbrains.vtb.javacourse.lesson02.participants.Participant;
 import com.geekbrains.vtb.javacourse.lesson02.participants.Robot;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /*
@@ -26,29 +24,25 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
 
-        List<Participant> participants = createParticipants();
-        List<Obstacle> obstacles = createObstacles();
+        Participant[] participants = createParticipants();
+        Obstacle[] obstacles = createObstacles();
         makeParticipantsOvercomeObstacles(participants, obstacles);
     }
 
-    public static List<Participant> createParticipants() {
-        List<Participant> participants = new ArrayList<>();
-        participants.add(new Cat("Том", 100, 300));
-        participants.add(new Human("Тим", 1000, 30));
-        participants.add(new Robot("Роб", 5000, 10));
+    public static Participant[] createParticipants() {
 
-        return participants;
+        return new Participant[] { new Cat("Том", 100, 300),
+                                    new Human("Тим", 1000, 30),
+                                    new Robot("Роб", 5000, 10) };
     }
 
-    public static List<Obstacle> createObstacles() {
-        List<Obstacle> obstacles = new ArrayList<>();
-        obstacles.add(new Treadmill(new Random().nextInt(50, 100)));
-        obstacles.add(new Wall(new Random().nextInt(30, 50)));
+    public static Obstacle[] createObstacles() {
 
-        return obstacles;
+        return new Obstacle[] {  new Treadmill(new Random().nextInt(50, 100)),
+                                new Wall(new Random().nextInt(30, 50)) };
     }
 
-    public static void makeParticipantsOvercomeObstacles(List<Participant> participants, List<Obstacle> obstacles) {
+    public static void makeParticipantsOvercomeObstacles(Participant[] participants, Obstacle[] obstacles) {
         for (Participant participant : participants) {
             for (Obstacle obstacle : obstacles) {
                 boolean success = obstacle.challenge(participant);
