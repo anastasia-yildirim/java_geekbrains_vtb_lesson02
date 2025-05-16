@@ -1,6 +1,8 @@
 package com.geekbrains.vtb.javacourse.lesson02.participants;
 
 public class Cat implements Participant {
+    private static final String JUMP_MESSAGE = "%s перепрыгнул препятствие: %d см.";
+    private static final String FAILED_MESSAGE = "%s не справился с задачей.";
     private int maxRunDistance;
     private int maxJumpHeight;
     private String name;
@@ -15,7 +17,7 @@ public class Cat implements Participant {
     public boolean run(int distance) {
         boolean success;
         if (distance > maxRunDistance) {
-            System.out.println(name + " не справился с задачей.");
+            System.out.println(String.format(FAILED_MESSAGE, name));
             success = false;
         } else {
             System.out.println(name + " успешно пробежал(а) " + distance + " м.");
@@ -30,7 +32,7 @@ public class Cat implements Participant {
             System.out.println(name + " не справился с задачей.");
             return false;
         } else {
-            System.out.println(name + " перепрыгнул препятствие: " + height + " см.");
+            System.out.println(String.format(JUMP_MESSAGE, name, height));
             return true;
         }
     }

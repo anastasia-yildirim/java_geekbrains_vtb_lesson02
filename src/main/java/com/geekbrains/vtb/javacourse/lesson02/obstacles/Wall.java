@@ -11,7 +11,6 @@ public class Wall implements Obstacle {
 
     @Override
     public boolean challenge(Participant participant) {
-
         return participant.jump(height);
     }
 }
