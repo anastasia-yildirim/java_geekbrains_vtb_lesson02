@@ -1,5 +1,7 @@
 package com.geekbrains.vtb.javacourse.lesson02.participants;
 
+import static com.geekbrains.vtb.javacourse.Messages.*;
+
 public class Robot implements Participant {
     private int maxRunDistance;
     private int maxJumpHeight;
@@ -15,22 +17,25 @@ public class Robot implements Participant {
     public boolean run(int distance) {
         boolean success;
         if (distance > maxRunDistance) {
-            System.out.println(name + " не справился с задачей.");
+            System.out.println(String.format(FAILED_MESSAGE, name));
             success = false;
         } else {
-            System.out.println(name + " успешно пробежал(а) " + distance + " м.");
+            System.out.println(String.format(RUN_SUCCESS_MESSAGE, name, distance));
             success = true;
         }
+
         return success;
     }
 
     @Override
     public boolean jump(int height) {
         if (height > maxJumpHeight) {
-            System.out.println(name + " не справился с задачей.");
+            System.out.println(String.format(FAILED_MESSAGE, name));
+
             return false;
         } else {
-            System.out.println(name + " перепрыгнул препятствие: " + height + " см.");
+            System.out.println(String.format(JUMP_SUCCESS_MESSAGE, name, height));
+
             return true;
         }
     }
