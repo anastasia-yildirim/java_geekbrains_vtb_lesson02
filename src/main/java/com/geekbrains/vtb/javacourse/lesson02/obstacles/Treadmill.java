@@ -11,7 +11,6 @@ public class Treadmill implements Obstacle {
 
     @Override
     public boolean challenge(Participant participant) {
-
         return participant.run(length);
     }
 }

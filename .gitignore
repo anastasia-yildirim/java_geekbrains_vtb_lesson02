@@ -4,14 +4,14 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/
+.idea/*
 *.iws
 *.iml
 *.ipr
+*.xml
 
 ### Mac OS ###
 .DS_Store
 
 # Default ignored files
 /shelf/
-/workspace.xml

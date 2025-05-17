@@ -23,22 +23,19 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-
         Participant[] participants = createParticipants();
         Obstacle[] obstacles = createObstacles();
         makeParticipantsOvercomeObstacles(participants, obstacles);
     }
 
     public static Participant[] createParticipants() {
-
         return new Participant[] { new Cat("Том", 100, 300),
                                     new Human("Тим", 1000, 30),
                                     new Robot("Роб", 5000, 10) };
     }
 
     public static Obstacle[] createObstacles() {
-
-        return new Obstacle[] {  new Treadmill(new Random().nextInt(50, 100)),
+        return new Obstacle[] { new Treadmill(new Random().nextInt(50, 100)),
                                 new Wall(new Random().nextInt(30, 50)) };
     }
 
