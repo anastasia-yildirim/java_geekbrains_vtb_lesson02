@@ -1,38 +1,67 @@
 package com.geekbrains.vtb.javacourse.lesson04.homework;
 
+import com.geekbrains.vtb.javacourse.lesson04.homework.fruits.Apple;
 import com.geekbrains.vtb.javacourse.lesson04.homework.fruits.FruitBox;
 import com.geekbrains.vtb.javacourse.lesson04.homework.fruits.Orange;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Lesson4Homework {
 
     /* 1. Написать метод, который меняет два элемента массива местами
     (массив может быть любого ссылочного типа). */
 
-    private static <T> Box<T>[] reverseArray(Box<T>[] array, int firstElementIndex,
+    public static void main(String[] args) {
+        String[] strings = {"1", "5", "stg"};
+        String[] newStrings = reverseArray(strings, 0, 1);
+        System.out.println(Arrays.toString(newStrings));
+
+        ArrayList<String> newArrayList = turnArrayIntoArrayList(strings);
+        System.out.println(newArrayList);
+
+        manipulateFruitBoxes();
+    }
+
+    private static <T> T[] reverseArray(T[] array, int firstElementIndex,
                                              int secondElementIndex) {
-        Box<T> temp = array[firstElementIndex];
-        array[firstElementIndex] = array[secondElementIndex];
-        array[secondElementIndex] = temp;
+        try {
+            T temp = array[firstElementIndex];
+            array[firstElementIndex] = array[secondElementIndex];
+            array[secondElementIndex] = temp;
+        } catch (Exception _) {
+            throw new ArrayIndexOutOfBoundsException(String.format("Make sure the indices are within 0-%s range", array.length - 1));
+        }
 
         return array;
     }
 
-     /* 2. Написать метод, который преобразует массив в ArrayList. */
-
     private static <T> ArrayList<T> turnArrayIntoArrayList(T[] array) {
-        ArrayList<T> result = new ArrayList<>();
-        for (T element : array) {       // or instead of for each: result.addAll(Arrays.asList(array));
-            result.add(element);
-        }
-
-        return result;      // or in one line: return new ArrayList<>(Arrays.asList(array));
+        return new ArrayList<>(Arrays.asList(array));
     }
 
-    FruitBox<Orange> boxOfOranges = new FruitBox<Orange>();
-    Orange orange = new Orange();
-    boxOfOranges.addFruit(orange);
+    private static void manipulateFruitBoxes() {
+        FruitBox<Orange> boxOfOranges = new FruitBox<>();
+        for (int i = 0; i < 4; i++) {
+            Orange orange = new Orange();
+            boxOfOranges.addFruit(orange);
+        }
+        boxOfOranges.getWeight();
+
+        FruitBox<Apple> boxOfApples = new FruitBox<>();
+        for (int i = 0; i < 6; i++) {
+            Apple apple = new Apple();
+            boxOfApples.addFruit(apple);
+        }
+        boxOfApples.getWeight();
+
+        System.out.println(boxOfApples.compare(boxOfOranges));
+
+        FruitBox<Orange> secondBoxOfOranges = new FruitBox<>();
+        boxOfOranges.transferFruitsToBox(secondBoxOfOranges);
+        boxOfOranges.getWeight();
+        secondBoxOfOranges.getWeight();
+    }
 
     /*
 3. Задача:

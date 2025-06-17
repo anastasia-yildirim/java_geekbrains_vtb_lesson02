@@ -1,9 +1,6 @@
 package com.geekbrains.vtb.javacourse.lesson04.homework.fruits;
 
-public class Fruit {
-    private static float WEIGHT;
+public abstract class Fruit {
 
-    public static float getWeight() {
-        return WEIGHT;
-    }
+    public abstract float getWeight();
 }
